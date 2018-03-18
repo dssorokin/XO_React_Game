@@ -1,0 +1,11 @@
+.table_game {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100px;
+}
+
+.table_game .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
