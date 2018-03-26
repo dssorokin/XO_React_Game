@@ -1,0 +1,40 @@
+$cell_size: 80px;
+$border_size: 4px;
+
+.table_game {
+    display: flex;
+    flex-wrap: wrap;
+    width: $cell_size * 3 + $border_size * 4;
+}
+
+.table_game .cell {
+    width: $cell_size;
+    height: $cell_size;
+    border: $border_size solid white;
+    font-size: 70px;
+    color: white;
+
+    &.cell_11,
+    &.cell_21,
+    &.cell_31 {
+        border-left: none;
+    }
+
+    &.cell_13,
+    &.cell_23,
+    &.cell_33 {
+        border-right: none;
+    }
+
+    &.cell_11,
+    &.cell_12,
+    &.cell_13 {
+        border-top: none;
+    }
+
+    &.cell_31,
+    &.cell_32,
+    &.cell_33, {
+        border-bottom: none;
+    }
+}
