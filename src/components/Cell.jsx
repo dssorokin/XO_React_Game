@@ -5,7 +5,7 @@ const Cell = props => {
     const onClick = props.onClick;
 
     return (
-        <div className="cell" onClick={() => cellInfo.value ? null : onClick(cellInfo)}>
+        <div className={"cell cell_" + cellInfo.id} onClick={() => cellInfo.value ? null : onClick(cellInfo)}>
             {cellInfo.value ? cellInfo.value : ''}
         </div>
     );

@@ -47,9 +47,8 @@ class Table extends Component {
         const { cells, onClick, winner } = this.props;
         return (
             <div>
-                <div className="header_game">{this.showWinner(cells)}</div>
                 <div className="table_game">
-                    {cells.map(cell => <Cell key={cell.id} cell={cell} onClick={onClick} />)}
+                    {cells.map(cell => <Cell className={"cell_" + cell.id} key={cell.id} cell={cell} onClick={onClick} />)}
                 </div>
             </div>
         );

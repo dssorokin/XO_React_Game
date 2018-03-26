@@ -1,4 +1,4 @@
-import { USER_MOVE } from '../constants/actionTypes';
+import { USER_MOVE, RESET_GAME } from '../constants/actionTypes';
 
 const initState = {
     table: [{id: '11', value: null}, {id: '12', value: null}, {id: '13', value: null},
@@ -17,6 +17,8 @@ export default (state = initState, action) => {
                 table,
                 currentMove: currentMove === 'X' ? 'O' : 'X'
             }
+        case RESET_GAME:
+            return initState;
     }
 
     return state;
