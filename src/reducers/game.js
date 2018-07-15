@@ -15,11 +15,14 @@ export default (state = initState, action) => {
             table = table.map(cell => action.id === cell.id ? {id: cell.id, value: currentMove} : cell);     
             return {
                 table,
-                currentMove: currentMove === 'X' ? 'O' : 'X'
-            }
+                currentMove: currentMove === 'X' ? 'O' : 'X',
+                currentWinner: null
+            };
         case RESET_GAME:
             return initState;
     }
 
     return state;
 }
+
+export {initState};
