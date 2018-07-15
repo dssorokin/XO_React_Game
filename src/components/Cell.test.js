@@ -4,13 +4,6 @@ import renderer from 'react-test-renderer';
 import { Cell }  from './Cell';
 
 describe('Cell test', () => {
-    let wrapper;
-    // const mockUserMove = jest.fn();
-    
-
-    // beforeEach(() => {
-    //     wrapper = shallow()           
-    // });
     
     it('renders correctly empty cell', () => {
         const cellInfo = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {USER_MOVE} from '../constants/actionTypes';
 import './Table.css';
 import Cell from './Cell';
 
