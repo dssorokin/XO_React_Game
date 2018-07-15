@@ -4,8 +4,7 @@ const initState = {
     table: [{id: '11', value: null}, {id: '12', value: null}, {id: '13', value: null},
             {id: '21', value: null}, {id: '22', value: null}, {id: '23', value: null},
             {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
-    currentMove: 'X',
-    currentWinner: null
+    currentMove: 'X'
 };
 
 export default (state = initState, action) => {
@@ -15,8 +14,7 @@ export default (state = initState, action) => {
             table = table.map(cell => action.id === cell.id ? {id: cell.id, value: currentMove} : cell);     
             return {
                 table,
-                currentMove: currentMove === 'X' ? 'O' : 'X',
-                currentWinner: null
+                currentMove: currentMove === 'X' ? 'O' : 'X'
             };
         case RESET_GAME:
             return initState;

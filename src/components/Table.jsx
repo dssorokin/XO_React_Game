@@ -9,12 +9,6 @@ const mapStateToProps = state => ({
     currentMove: state.game.currentMove
 });
 
-const mapDispatchToProps = dispatch => ({
-    onClick: cell => dispatch({
-        type: USER_MOVE,
-        id: cell.id
-    })
-});
 
 class Table extends Component {
     
@@ -36,23 +30,24 @@ class Table extends Component {
             return cell.value === result ? cell.value : false; 
         };
 
-        const isUserWinner = (rows, cols) => rows.some(row => row.reduce(checkSameValue, row[0].value)) ||
-        cols.some(col => col.reduce(checkSameValue, col[0].value))
+        const isUserWinner = (rows, cols) => 
+            rows.some(row => row.reduce(checkSameValue, row[0].value)) ||
+                cols.some(col => col.reduce(checkSameValue, col[0].value))
 
 
         return isUserWinner(XO_Rows, XO_Columns) ? `The player ${previousMove} has won!` : '';
     }
 
     render() {
-        const { cells, onClick, winner } = this.props;
+        const { cells, winner } = this.props;
         return (
             <div>
                 <div className="table_game">
-                    {cells.map(cell => <Cell className={"cell_" + cell.id} key={cell.id} cell={cell} onClick={onClick} />)}
+                    {cells.map(cell => <Cell className={"cell_" + cell.id} key={cell.id} cell={cell} />)}
                 </div>
             </div>
         );
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, null)(Table);

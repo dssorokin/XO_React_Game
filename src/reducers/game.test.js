@@ -12,8 +12,7 @@ describe('game reducer', () => {
         table: [{id: '11', value: null}, {id: '12', value: null}, {id: '13', value: null},
             {id: '21', value: 'O'}, {id: '22', value: 'X'}, {id: '23', value: null},
             {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
-        currentMove: 'X',
-        currentWinner: null
+        currentMove: 'X'
     };
 
     const action = {
@@ -25,9 +24,31 @@ describe('game reducer', () => {
           table: [{id: '11', value: null}, {id: '12', value: null}, {id: '13', value: null},
               {id: '21', value: 'O'}, {id: '22', value: 'X'}, {id: '23', value: 'X'},
               {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
-          currentMove: 'O',
-          currentWinner: null
+          currentMove: 'O'
       };
+    expect(reducer(stateBefore, action)).toEqual(stateAfter);
+  });
+
+  it('should handle O user move', () => {
+    const stateBefore = {
+        table: [{id: '11', value: null}, {id: '12', value: null}, {id: '13', value: null},
+            {id: '21', value: 'O'}, {id: '22', value: 'X'}, {id: '23', value: null},
+            {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
+        currentMove: 'O'
+    };
+
+    const action = {
+        type: USER_MOVE,
+        id: '11'
+    };
+
+    const stateAfter = {
+        table: [{id: '11', value: 'O'}, {id: '12', value: null}, {id: '13', value: null},
+            {id: '21', value: 'O'}, {id: '22', value: 'X'}, {id: '23', value: null},
+            {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
+        currentMove: 'X'
+    };
+
     expect(reducer(stateBefore, action)).toEqual(stateAfter);
   });
 

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "node-sass-chokidar": "^1.2.2",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -17,5 +18,8 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.4.1"
   }
 }
