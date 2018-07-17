@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {USER_MOVE, RESET_GAME} from '../constants/actionTypes';
+import socket from '../io';
 import Table from './Table';
 import Btn from './Button';
 
@@ -11,10 +12,21 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     resetGame: () => dispatch({
         type: RESET_GAME
+    }),
+    userMove: cellId => dispatch({
+        type: USER_MOVE,
+        id: cellId
     })
 });
 
 class Game extends Component {
+
+    componentDidMount() {
+        socket.on('OPPONENT_MOVE', cellId => {
+          console.log('cell id', cellId);
+          this.props.userMove(cellId);
+        })
+    }
 
     showWinner(table) {
         const { currentMove } = this.props;
