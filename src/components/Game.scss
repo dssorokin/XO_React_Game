@@ -1,0 +1,14 @@
+$board_color: rgba(46, 212, 198, 0.775);
+
+.game_zone {
+    flex-direction: column;
+    align-items: center;
+    background-color: $board_color;
+    height: 100%;
+    display: flex;
+}
+
+.header_game {
+    padding-top: 50px;
+    height: 90px;
+}

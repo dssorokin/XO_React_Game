@@ -5,6 +5,7 @@ $border_size: 4px;
     display: flex;
     flex-wrap: wrap;
     width: $cell_size * 3 + $border_size * 4;
+    padding-top: 50px;
 }
 
 .table_game .cell {

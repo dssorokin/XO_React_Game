@@ -28,11 +28,13 @@ export const Cell = props => {
     const cellInfo = props.cell;
     const userMove = props.userMove;
     const playerName = props.playerName;
+    const isHighlighted = cellInfo.isHighlighted;
 
     if (!cellInfo) return (<div></div>);
 
     return (
-        <div className={"cell cell_" + cellInfo.id} onClick={() => cellInfo.value ? null : userMove(cellInfo, playerName)}>
+        <div className={"cell cell_" + cellInfo.id + " " + (isHighlighted ? "highlight" : "")}
+            onClick={() => cellInfo.value ? null : userMove(cellInfo, playerName)}>
             {cellInfo.value ? cellInfo.value : ''}
         </div>
     );
