@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {USER_MOVE, RESET_GAME} from '../constants/actionTypes';
 import socket from '../io';
@@ -7,8 +7,8 @@ import Btn from './Button';
 import './Game.css';
 
 const mapStateToProps = state => ({
-    table: state.game.table,
-    winner: state.game.winner
+    winner: state.game.winner,
+    isDraw: state.game.isDraw
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -30,15 +30,37 @@ class Game extends Component {
         })
     }
 
+    showResult() {
+        const { winner, isDraw, resetGame } = this.props;
+        let resultBlock;
+
+        if (winner) {
+            resultBlock = 
+                <Fragment>
+                    The player {winner} has won!
+                    <Btn onClick={resetGame} />
+                </Fragment>;
+        } else if (isDraw) {
+            resultBlock =
+                <Fragment>
+                    Draw!
+                    <Btn onClick={resetGame} />
+                </Fragment>;
+        } else {
+            resultBlock = null;
+        }
+
+        return resultBlock;
+    }
+
 
     render() {
-        const { table, resetGame, winner } = this.props;
+        const { resetGame, winner, isDraw } = this.props;
 
         return (
             <div className="game_zone">
                 <div className="header_game">
-                    {winner ? `The player ${winner} has won!` : null}
-                    {winner ? <Btn onClick={resetGame} /> : ''}
+                    {this.showResult()}
                 </div>
                 <Table />
             </div>

@@ -6,7 +6,8 @@ const initState = {
             {id: '31', value: null}, {id: '32', value: null}, {id: '33', value: null}],
     currentMove: 'X',
     playerName: '',
-    winner: null
+    winner: null,
+    isDraw: false
 };
 
 const hasWinner = table => {
@@ -40,22 +41,27 @@ const hasWinner = table => {
     return isUserWinner(XO_Rows, XO_Columns, XO_Diagonals);
 };
 
+const isFieldFull = table => !table.filter(cell => !cell.value).length;
+
 export default (state = initState, action) => {
-    let { table, currentMove, winner } = state;
+    let { table, currentMove, winner, isDraw } = state;
     switch (action.type) {
         case USER_MOVE:
-            if (winner) return state;
+            if (winner || isDraw) return state;
             
             table = table.map(cell => action.id === cell.id ? {id: cell.id, value: currentMove} : cell);
 
             if (hasWinner(table)) {
                 winner = currentMove;
+            } else if (isFieldFull(table)) {
+                 isDraw = true;
             } else {
-                currentMove = currentMove === 'X' ? 'O' : 'X'; 
+                currentMove = currentMove === 'X' ? 'O' : 'X';
             }
 
             return {
                 ...state,
+                isDraw,
                 table,
                 winner,
                 currentMove
