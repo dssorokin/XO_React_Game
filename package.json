@@ -1,6 +1,7 @@
 {
   "name": "xo_game",
   "version": "0.1.0",
+  "homepage": "https://dssorokin.github.io/xo_react_game",
   "private": true,
   "dependencies": {
     "express": "^4.16.3",
@@ -17,13 +18,16 @@
   "scripts": {
     "start": "concurrently \"node ./server\" \"react-scripts start\" \"npm run watch-css\"",
     "start:client": "concurrently \"react-scripts start\" \"npm run watch-css\"",
-    "build": "react-scripts build",
+    "build": "concurrently \"react-scripts build\"  \"npm run build-css\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "devDependencies": {
+    "gh-pages": "^1.2.0",
     "react-test-renderer": "^16.4.1"
   }
 }
